@@ -1,0 +1,1 @@
+docker run --name cox -it tomcat:8.5.29-jre8-alpine
