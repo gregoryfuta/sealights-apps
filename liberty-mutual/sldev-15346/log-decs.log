@@ -1,0 +1,68 @@
+## Will be artifact, updated now to DL from Sealights
+echo "Downloading Sealights Agents..."
+curl https://agents.sealights.co/sealights-java/sealights-java-latest.zip -L --output sealights-java-agents.zip -v --insecure
+unzip -o sealights-java-agents.zip
+echo "Sealights agent version used is:" `cat sealights-java-version.txt`
+##This step is done to copy the file into the Docker Image
+echo " copying the jar file"
+#cp *.jar eclps-docker-deployment/deployment/
+#echo ${bamboo.SAUCE_BAMBOO_BUILDNUMBER}
+# sample values
+##Should come from pom.xml
+export SL_APP_NAME="ECLPS_Traditional"
+export SL_PACKAGES_INCLUDED="*com.lmig.*,com.amit.*,ocg.*,rmiserver.OCRMIServices.*,OCMessaging.OCMessage.*"
+# This will be artifact as well
+export SL_TOKEN=""
+export COMMIT=$(git rev-parse HEAD)
+##export PR=$(git ls-remote bitbucket | grep $COMMIT | grep "pull-requests" | sed "s/.*requests\/\(.*\)\/from/\1/g")
+echo ${COMMIT}
+##echo ${PR}
+echo "BITBUCKET_PR_ID is ${BITBUCKET_PR_ID}"
+echo "BITBUCKET_COMMIT is ${BITBUCKET_COMMIT}"
+env | grep bamboo_
+env | grep bitbucket
+echo "variables were set above"
+# Pull request parameters per the Sealights documentation
+#if [ -n "${BITBUCKET_PR_ID}" ]; then
+#      #Pull Request context (Bitbucket environment variables)
+#      java -jar sl-build-scanner.jar -prConfig -token $SL_TOKEN -appname $SL_APP_NAME \
+#            -targetBranch "${bamboo.repository.pr.targetBranch}" -pullRequestNumber ${BITBUCKET_PR_ID} \
+#            -latestCommit ${COMMIT} -repoUrl "${bamboo.planRepository.repositoryUrl}" \
+#            -pi $SL_PACKAGES_INCLUDED
+#else
+#      #Regular Build
+#      java -jar sl-build-scanner.jar -config -token $SL_TOKEN -appname $SL_APP_NAME \
+#            -branchname "${bamboo.planRepository.branchDisplayName}" -buildname "${bamboo.SAUCE_BAMBOO_BUILDNUMBER}" -pi $SL_PACKAGES_INCLUDED
+#fi
+echo "begining of Json"
+echo '{
+"tokenFile": "./sltoken.txt",
+"createBuildSessionId": true,
+"branchName": "${bamboo.planRepository.branchDisplayName}",
+"buildSessionIdFile": "./buildSessionId.txt",
+"filesIncluded": "*.class",
+"filesExcluded": "*test-classes*",
+"packagesIncluded": "*com.lmig.*,com.amit.*,ocg.*,rmiserver.OCRMIServices.*,OCMessaging.OCMessage.*",
+"packagesExcluded": "",
+"recursive": true,
+"includeResources": true,
+"testStage": "Unit Tests",
+"labId": null,
+"executionType": "full",
+"appName": "ECLPS_Traditional",
+"buildName": "${bamboo.buildNumber}",
+"logEnabled": true,
+"logDestination": "console",
+"logLevel": "error",
+"logFolder": "/tmp",
+"sealightsJvmParams": { "sl.scm.provider": "github",
+    "sl.scm.baseUrl": "https://github.com/lmigtech/eclps-timed-maven-release/blob",
+    "sl.scm.version": "2.9.0"},
+"enabled": true,
+"filesStorage": "/tmp"
+}' > slmaven.json
+echo "Updating POM with Sealights..."
+java -Dsl.log.level=info -Dsl.log.toConsole=true -jar sl-build-scanner.jar -pom -configfile slmaven.json -workspacepath .
+echo "Sealight configuration with proxy"
+echo "copy sealights files"
+ls -ltr eclps-docker-deployment/deployment/

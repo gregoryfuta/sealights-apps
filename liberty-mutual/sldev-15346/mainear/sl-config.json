@@ -1,0 +1,27 @@
+{
+  "tokenFile": "./sltoken.txt",
+  "createBuildSessionId": true,
+  "branchName": "develop",
+  "buildSessionIdFile": "./buildSessionId.txt",
+  "filesIncluded": "*.class",
+  "filesExcluded": "*test-classes*",
+  "packagesIncluded": "*dev.futa*",
+  "packagesExcluded": "",
+  "recursive": true,
+  "includeResources": true,
+  "testStage": "Unit Tests",
+  "labId": null,
+  "executionType": "full",
+  "appName": "EAR_Test",
+  "buildName": "ear-123",
+  "logEnabled": true,
+  "logDestination": "console",
+  "logLevel": "error",
+  "logFolder": "/tmp",
+  "sealightsJvmParams": {
+    "sl.scm.provider": "github",
+    "sl.scm.version": "2.9.0"
+  },
+  "enabled": true,
+  "filesStorage": "/tmp"
+}

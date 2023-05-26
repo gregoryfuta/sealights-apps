@@ -1,0 +1,31 @@
+53836 build   23-May-2023 19:30:58    [INFO] - [Sealights Maven Plugin] - ------------------------------------------------------------
+53837 build   23-May-2023 19:30:58    [INFO] - [Sealights Maven Plugin] - Successfully executed goal 'test listener'
+53838 build   23-May-2023 19:30:58    [INFO]
+53839 build   23-May-2023 19:30:58    [INFO] --- maven-ear-plugin:2.5:generate-application-xml (default-generate-application-xml) @ eclps-ear ---
+53840 build   23-May-2023 19:30:58    [INFO] Generating application.xml
+53841 build   23-May-2023 19:30:58    [INFO]
+53842 build   23-May-2023 19:30:58    [INFO] --- maven-resources-plugin:2.4.3:resources (default-resources) @ eclps-ear ---
+53843 build   23-May-2023 19:30:58    Downloading: https://repo.forge.lmig.com/java/org/apache/maven/shared/maven-filtering/1.0-beta-4/maven-filtering-1.0-beta-4.pom
+53844 build   23-May-2023 19:30:58    Downloaded: https://repo.forge.lmig.com/java/org/apache/maven/shared/maven-filtering/1.0-beta-4/maven-filtering-1.0-beta-4.pom   53844 (5 KB at 59.0 KB/sec)
+53845 build   23-May-2023 19:30:58    Downloading: https://repo.forge.lmig.com/java/org/apache/maven/shared/maven-filtering/1.0-beta-4/maven-filtering-1.0-beta-4.jar
+53846 build   23-May-2023 19:30:58    Downloaded: https://repo.forge.lmig.com/java/org/apache/maven/shared/maven-filtering/1.0-beta-4/maven-filtering-1.0-beta-4.jar   53846 (34 KB at 401.3 KB/sec)
+53847 build   23-May-2023 19:30:58    [WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+53848 build   23-May-2023 19:30:58    [INFO] skip non existing resourceDirectory /home/bamboo/bamboo-agent-home/xml-data/build-dir/CIITECLPS-ECLPSDEPLOY-RTN/eclps-ea  53848 r/src/main/resources
+53849 build   23-May-2023 19:30:58    [INFO]
+53850 build   23-May-2023 19:30:58    [INFO] --- sealights-maven-plugin:4.0.960:build-scanner (a1) @ eclps-ear ---
+53851 build   23-May-2023 19:30:58    [INFO] - [Sealights Maven Plugin] - Executing goal 'build scanner'
+53852 build   23-May-2023 19:30:58    [INFO] - [Sealights Maven Plugin] - Using provided filesStorage(absolute path): /tmp
+53853 build   23-May-2023 19:30:58    token=eyJhbGciOi...Vw4
+53854 build   23-May-2023 19:30:58    buildSessionId=7f4a873f-12a3-46ef-9869-5129d92a2ea9
+
+53855 build   23-May-2023 19:30:58    [INFO] - [Sealights Maven Plugin] - Default token and buildSessionId files were created in '/home/bamboo/bamboo-agent-home/xml-  53855 data/build-dir/CIITECLPS-ECLPSDEPLOY-RTN/eclps-ear/target/classes'
+
+53901 !!! build   23-May-2023 19:31:01    [Sealights Build Scanner] [19] - Build-mapping for module 'eclps-ear' was sent - scanned 0 methods in 0 files
+53902 build   23-May-2023 19:31:01    [INFO] - [Sealights Maven Plugin] - Successfully executed goal 'build scanner'
+53907 build   23-May-2023 19:31:01    [INFO] --- maven-ear-plugin:2.5:ear (default-ear) @ eclps-ear ---
+
+59831 build   23-May-2023 19:33:41    [INFO] - [Sealights Maven Plugin] - Default token and buildSessionId files were created in '/home/bamboo/bamboo-agent-home/xml-  59831 data/build-dir/CIITECLPS-ECLPSDEPLOY-RTN/cl-ps-ear/target/classes'
+
+59877 !!! build   23-May-2023 19:33:43    [Sealights Build Scanner] [a2] - Build-mapping for module 'cl-ps-ear' was sent - scanned 0 methods in 0 files
+
+59883 build   23-May-2023 19:33:43    [INFO] --- maven-ear-plugin:2.5:ear (default-ear) @ cl-ps-ear ---
