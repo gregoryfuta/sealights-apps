@@ -1,0 +1,17 @@
+FROM tomcat:8.5.29-jre8-alpine
+
+COPY test.txt /opt/test2.txt
+COPY sl-token.txt /opt/sl-token.txt
+COPY java-agent-bootstrapper-ftv-4.0.0-SNAPSHOT.jar /opt/sl-cd-agent.jar
+COPY context.xml /usr/local/tomcat/conf
+
+RUN mkdir /usr/local/tomcat/webapps/xws
+COPY xws2.zip /usr/local/tomcat/webapps/xws
+WORKDIR /usr/local/tomcat/webapps/xws
+RUN unzip xws2.zip
+RUN rm -f xws2.zip
+
+WORKDIR /usr/local/tomcat/webapps
+#RUN ln -s /opt/xws xws
+
+ENV CATALINA_OPTS -javaagent:/opt/sl-cd-agent.jar -Dsl.appName=xws -Dsl.buildName=cox.006 -Dsl.labId=integ_main_xws -Dsl.includes=*i0.sealights.* -Dsl.log.level=debug -Dsl.log.toConsole=true -Dsl.tokenFile=/opt/sl-token.txt -Dsl.logback=true -Dsl.log.toFile=true -Dsl.workspace=/usr/local/tomcat/webapps/xws -Dsl.log.folder=/opt -Dsl.log.filename=custom-file.name.log
